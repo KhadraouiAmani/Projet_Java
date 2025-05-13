@@ -62,14 +62,16 @@ public abstract class Robot {
     }
     //Recharge du robot
     protected void Recharger(int quantité){
+        int old = this.energie;
         this.energie += quantité;
         if (this.energie > 100){
             this.energie=100;
         }
+        AjouterHistorique("Changement d'énergie: de " + old + " à " + this.energie);
     }
     //Méthodes abstraites
-    public abstract void Déplacer(int x, int y) throws RobotException;
-    public abstract void EffectuerTache() throws RobotException;
+    public abstract void deplacer(int x, int y) throws RobotException;
+    public abstract void effectuerTache() throws RobotException;
 
     //Récupération de l'historique complet sous forme de string
     public String getHistorique(){

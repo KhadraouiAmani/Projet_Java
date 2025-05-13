@@ -35,4 +35,13 @@ public abstract class RobotConnecte extends Robot implements Connectable{
         AjouterHistorique("Données envoyées : " + donnees);
     }
 
+    public static void main(String[] args) throws RobotException{
+        
+        RobotLivraison rc = new RobotLivraison("3", 0, 0, 100, 4); 
+        rc.connecter("insat.com");
+        rc.envoyerDonnees("123456");
+        System.out.println(rc.toString());
+        System.out.println(rc.getHistorique());
+    }
+
 }
