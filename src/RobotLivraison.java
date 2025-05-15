@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class RobotLivraison extends RobotConnecte {
 
-
     protected int colisActuel;
     protected String pid;
     protected String destination;
@@ -109,6 +108,25 @@ public class RobotLivraison extends RobotConnecte {
             AjouterHistorique("Chargement du colis à la destination " + destination);
         }
     }
-     
 
+
+    public String getId() {
+        return id;
+    }
+
+    public String getX() {
+        return String.valueOf(x);
+    }
+
+    public String getY() {
+        return String.valueOf(y);
+    }
+
+    public String getEnergie() {
+        return String.valueOf(energie);
+    }
+
+    public String getHeures() {
+        return String.valueOf(heureUtilisation);
+    }
 }

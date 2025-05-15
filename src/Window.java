@@ -10,8 +10,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 //one thing we have to keep in mind, is that we're manipulating objects here
-//donc ki nhebou nasn3ou robot mthln, lezemna dima naa3tiw object kemel bch baaed najmou nmanipuliweh 
-//soit history soit fl reseau wala ay hkeya
+//donc quand on veut creer un robot, on doit donner tout un objet pour pouvoir le manipuler
+//soit history soit dans reseau...
 public class Window {
 
     // Data structures for robots and menus
@@ -68,7 +68,7 @@ public class Window {
 
         aboutPanel.add(label);
         
-        //hateh yzidelna espace te3 20 pixels binet l components te3 l about panel
+        //ajoute 20 pixels entre components du about panel
         aboutPanel.add(Box.createVerticalStrut(20));
         aboutPanel.add(createRobotButton);
 

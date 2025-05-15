@@ -1,25 +1,21 @@
 import java.util.Map;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class robotMenuBuilder {
     private final JFrame frame;
     private final JMenuBar menuBar;
-    private final Map<String, RobotLivraison> robotMap;
-    private final Map<String, JMenu> robotMenus;
+    private final Map<String, RobotLivraison> robotMap;//Map qui associe l'ID d'un robot (String) à un objet RobotLivraison.
+    private final Map<String, JMenu> robotMenus;// Map qui associe l'ID d'un robot à son menu correspondant dans l'interface graphique.
 
 
-
+//constructeur
 public robotMenuBuilder(JFrame frame, JMenuBar menuBar, Map<String, RobotLivraison> robotMap, Map<String, JMenu> robotMenus) {
         this.frame = frame;
         this.menuBar = menuBar;
         this.robotMap = robotMap;
         this.robotMenus = robotMenus;
 }
-
+//'ajouter un robot à la collection robotMap
 public void addRobot(RobotLivraison robot, JFrame frame) {
         robotMap.put(robot.id, robot);
         try {
@@ -31,7 +27,7 @@ public void addRobot(RobotLivraison robot, JFrame frame) {
             JOptionPane.showMessageDialog(frame, "Erreur: " + ex.getMessage(), "Erreur lors de la création du menu", JOptionPane.ERROR_MESSAGE);
         }
 }
-
+//creation d'un menu correspondant au robot via createMenuFor puis l'ajoute a la barre de menu
 public void updateMenuFor(RobotLivraison robot) {
         JMenu oldMenu = robotMenus.get(robot.id);
         if (oldMenu != null) {
@@ -47,8 +43,6 @@ public void updateMenuFor(RobotLivraison robot) {
             JOptionPane.showMessageDialog(frame, "Erreur: " + ex.getMessage(), "Erreur lors de la création du menu", JOptionPane.ERROR_MESSAGE);
         }
 }
-
-
 public JMenu createMenuFor(RobotLivraison robot, JFrame frame) throws RobotException {
         //we're going to handle all the actions in the submenu of the robots here 
         //actions we need to perform:
@@ -177,6 +171,16 @@ public JMenu createMenuFor(RobotLivraison robot, JFrame frame) throws RobotExcep
                 robot.Arreter();
                 updateMenuFor(robot);
             });
+
+        JMenuItem modeeco =new JMenuItem("Activer mode eco");
+        modeeco.addActionListener(e ->{
+            if(robot.isModeco()){robot.setModeco(false);modeeco.setText("Activer mode eco");robot.AjouterHistorique("mode eco desactivé");
+
+            }
+            else {robot.setModeco(true);modeeco.setText("desactiver mode eco");robot.AjouterHistorique("mode eco activé");}
+        });
+        robotSubMenu.add(modeeco);
+
         robotSubMenu.add(veilleItem);
 
         } else {

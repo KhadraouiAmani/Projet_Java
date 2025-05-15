@@ -10,6 +10,7 @@ public abstract class Robot {
     protected int heureUtilisation;
     protected boolean enMarche;
     protected List<String> historiqueActions;
+    protected boolean modeco=false;
 
     //Constructeur
     public Robot(String id, int x, int y, int energie, int heureUtilisation) {
@@ -55,6 +56,7 @@ public abstract class Robot {
     }
     //Consommation de l'énergie du robot
     protected void ConsommerEnergie(int quantité){
+        if(isModeco()){quantité =(int)( quantité * 0.8);}//reduction de la consommation d'energie de 20%
         this.energie -= quantité;
         if (this.energie < 0){
             this.energie=0;
@@ -85,6 +87,12 @@ public abstract class Robot {
     @Override
     public String toString(){
         return "RobotIndustriel [ID : "+this.id+",Position : (" + this.x + "," + this.y + "), Énergie : " + this.energie +"%, Heures : " + this.heureUtilisation + "]";
+    }
+    public boolean isModeco(){
+        return modeco;
+    }
+    public void setModeco(boolean c){
+        this.modeco=c;
     }
 
 }
